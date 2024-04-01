@@ -4,7 +4,7 @@ import { Command, ExtensionProperties, Message } from '../entities';
 
 export function uncommentAllLogMessagesCommand(): Command {
   return {
-    name: 'turboConsoleLog.uncommentAllLogMessages',
+    name: 'debugUrDrupal.uncommentAllLogMessages',
     handler: async (
       {
         delimiterInsideMessage,

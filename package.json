@@ -1,6 +1,6 @@
 {
-  "name": "turbo-console-log",
-  "displayName": "Turbo Console Log",
+  "name": "debug-ur-drupal",
+  "displayName": "Debug UR Drupal",
   "description": "Quick way to of writing log/debug messages.",
   "version": "1.0.0",
   "publisher": "UR-Services",
@@ -24,59 +24,59 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "Turbo Console Log Configuration",
+      "title": "Debug UR Drupal Configuration",
       "properties": {
-        "turboConsoleLog.wrapLogMessage": {
+        "debugUrDrupal.wrapLogMessage": {
           "type": "boolean",
           "default": false,
           "description": "Determine if the log message should be wrapped or not."
         },
-        "turboConsoleLog.logMessagePrefix": {
+        "debugUrDrupal.logMessagePrefix": {
           "type": "string",
           "default": "🚀",
           "description": "The prefix of the log message."
         },
-        "turboConsoleLog.logMessageSuffix": {
+        "debugUrDrupal.logMessageSuffix": {
           "type": "string",
           "default": ":",
           "description": "The suffix of the log message."
         },
-        "turboConsoleLog.includeFileNameAndLineNum": {
+        "debugUrDrupal.includeFileNameAndLineNum": {
           "type": "boolean",
           "default": false,
           "description": "Whether to include the file name and the line number of the log message."
         },
-        "turboConsoleLog.addSemicolonInTheEnd": {
+        "debugUrDrupal.addSemicolonInTheEnd": {
           "type": "boolean",
           "default": false,
           "description": "Whether to add or not a semicolon in the end of the log message."
         },
-        "turboConsoleLog.insertEnclosingClass": {
+        "debugUrDrupal.insertEnclosingClass": {
           "type": "boolean",
           "default": true,
           "description": "Whether to insert or not the enclosing class of the selected variable in the log message."
         },
-        "turboConsoleLog.insertEnclosingFunction": {
+        "debugUrDrupal.insertEnclosingFunction": {
           "type": "boolean",
           "default": true,
           "description": "Whether to insert or not the enclosing function of the selected variable in the log message."
         },
-        "turboConsoleLog.insertEmptyLineBeforeLogMessage": {
+        "debugUrDrupal.insertEmptyLineBeforeLogMessage": {
           "type": "boolean",
           "default": false,
           "description": "Whether to insert an empty line before the log message or not."
         },
-        "turboConsoleLog.insertEmptyLineAfterLogMessage": {
+        "debugUrDrupal.insertEmptyLineAfterLogMessage": {
           "type": "boolean",
           "default": false,
           "description": "Whether to insert an empty line after the log message or not."
         },
-        "turboConsoleLog.delimiterInsideMessage": {
+        "debugUrDrupal.delimiterInsideMessage": {
           "type": "string",
           "default": "~",
           "description": "The delimiter that will separate the different log message elements (file name, line number, class, function and variable)"
         },
-        "turboConsoleLog.quote": {
+        "debugUrDrupal.quote": {
           "type": "string",
           "enum": [
             "\"",
@@ -86,7 +86,7 @@
           "default": "\"",
           "description": "Double quotes, single quotes or backtick"
         },
-        "turboConsoleLog.logType": {
+        "debugUrDrupal.logType": {
           "type": "string",
           "enum": [
             "d",
@@ -98,49 +98,49 @@
           "default": "d",
           "description": "Select the log type"
         },
-        "turboConsoleLog.logFunction": {
+        "debugUrDrupal.logFunction": {
           "type": "string",
-          "default": "log",
+          "default": "d",
           "description": "Specify a log function (when specified logType will be ignored)"
         }
       }
     },
     "commands": [
       {
-        "command": "turboConsoleLog.displayLogMessage",
-        "title": "Turbo Console Log: Display Log Message"
+        "command": "debugUrDrupal.displayLogMessage",
+        "title": "Debug UR Drupal: Display Log Message"
       },
       {
-        "command": "turboConsoleLog.commentAllLogMessages",
-        "title": "Turbo Console Log: Comment All Log Messages"
+        "command": "debugUrDrupal.commentAllLogMessages",
+        "title": "Debug UR Drupal: Comment All Log Messages"
       },
       {
-        "command": "turboConsoleLog.uncommentAllLogMessages",
-        "title": "Turbo Console Log: Uncomment All Log Messages"
+        "command": "debugUrDrupal.uncommentAllLogMessages",
+        "title": "Debug UR Drupal: Uncomment All Log Messages"
       },
       {
-        "command": "turboConsoleLog.deleteAllLogMessages",
-        "title": "Turbo Console Log: Delete All Log Messages"
+        "command": "debugUrDrupal.deleteAllLogMessages",
+        "title": "Debug UR Drupal: Delete All Log Messages"
       }
     ],
     "keybindings": [
       {
-        "command": "turboConsoleLog.displayLogMessage",
+        "command": "debugUrDrupal.displayLogMessage",
         "key": "ctrl+alt+l",
         "mac": "ctrl+alt+l"
       },
       {
-        "command": "turboConsoleLog.commentAllLogMessages",
+        "command": "debugUrDrupal.commentAllLogMessages",
         "key": "alt+shift+c",
         "mac": "alt+shift+c"
       },
       {
-        "command": "turboConsoleLog.uncommentAllLogMessages",
+        "command": "debugUrDrupal.uncommentAllLogMessages",
         "key": "alt+shift+u",
         "mac": "alt+shift+u"
       },
       {
-        "command": "turboConsoleLog.deleteAllLogMessages",
+        "command": "debugUrDrupal.deleteAllLogMessages",
         "key": "alt+shift+d",
         "mac": "alt+shift+d"
       }

@@ -5,7 +5,7 @@ import { getTabSize } from '../utilities';
 
 export function displayLogMessageCommand(): Command {
   return {
-    name: 'turboConsoleLog.displayLogMessage',
+    name: 'debugUrDrupal.displayLogMessage',
     handler: async (
       extensionProperties: ExtensionProperties,
       jsDebugMessage: DebugMessage,

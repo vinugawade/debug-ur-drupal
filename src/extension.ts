@@ -18,7 +18,7 @@ export function activate(): void {
     debugMessageLine,
   );
   const config: vscode.WorkspaceConfiguration =
-    vscode.workspace.getConfiguration('turboConsoleLog');
+    vscode.workspace.getConfiguration('debugUrDrupal');
   const properties: ExtensionProperties = getExtensionProperties(config);
   const commands: Array<Command> = getAllCommands();
   for (const { name, handler } of commands) {
