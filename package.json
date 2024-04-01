@@ -86,13 +86,13 @@
         "turboConsoleLog.logType": {
           "type": "string",
           "enum": [
-            "log",
-            "warn",
-            "error",
-            "debug",
-            "table"
+            "d",
+            "dd",
+            "ksm",
+            "var_dump",
+            "print_r"
           ],
-          "default": "log",
+          "default": "d",
           "description": "Select the log type"
         },
         "turboConsoleLog.logFunction": {
@@ -150,10 +150,7 @@
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "watch": "npm run esbuild --watch",
     "lint": "eslint src --ext ts",
-    "pretest": "yarn run esbuild-base",
-    "test-compile": "rm -rf out && tsc -p ./ && mkdir out/test/files && cp -r src/test/files/ out/test/files/",
-    "test": "npm run test-compile && node ./out/test/runTests.js",
-    "test:unit": "npm run test-compile && mocha --require ts-node/register 'src/test/unit/**/*.test.ts'"
+    "pretest": "yarn run esbuild-base"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",

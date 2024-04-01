@@ -58,8 +58,8 @@ export class JSDebugMessage extends DebugMessage {
     textEditor: TextEditorEdit,
     lineOfLogMsg: number,
     debuggingMsg: string,
-    insertEmptyLineBeforeLogMessage: ExtensionProperties['insertEmptyLineBeforeLogMessage'],
-    insertEmptyLineAfterLogMessage: ExtensionProperties['insertEmptyLineAfterLogMessage'],
+    insertEmptyLineBeforeLogMessage: boolean,
+    insertEmptyLineAfterLogMessage: boolean,
   ): void {
     textEditor.insert(
       new Position(
@@ -95,16 +95,7 @@ export class JSDebugMessage extends DebugMessage {
     debuggingMsgContent: string,
     spacesBeforeMsg: string,
   ): string {
-    const wrappingMsg = `console.${extensionProperties.logType}(${
-      extensionProperties.quote
-    }${extensionProperties.logMessagePrefix} ${'-'.repeat(
-      debuggingMsgContent.length - 16,
-    )}${extensionProperties.logMessagePrefix}${extensionProperties.quote})${
-      extensionProperties.addSemicolonInTheEnd ? ';' : ''
-    }`;
-    const debuggingMsg: string = extensionProperties.wrapLogMessage
-      ? `${spacesBeforeMsg}${wrappingMsg}\n${spacesBeforeMsg}${debuggingMsgContent}\n${spacesBeforeMsg}${wrappingMsg}`
-      : `${spacesBeforeMsg}${debuggingMsgContent}`;
+    const debuggingMsg = `${spacesBeforeMsg}${debuggingMsgContent}`;
     return debuggingMsg;
   }
   private constructDebuggingMsgContent(
@@ -117,54 +108,12 @@ export class JSDebugMessage extends DebugMessage {
       'wrapLogMessage' | 'insertEmptyLineAfterLogMessage'
     >,
   ): string {
-    const fileName = document.fileName.includes('/')
-      ? document.fileName.split('/')[document.fileName.split('/').length - 1]
-      : document.fileName.split('\\')[document.fileName.split('\\').length - 1];
-    const funcThatEncloseTheVar: string = this.enclosingBlockName(
-      document,
-      lineOfSelectedVar,
-      'function',
-    );
-    const classThatEncloseTheVar: string = this.enclosingBlockName(
-      document,
-      lineOfSelectedVar,
-      'class',
-    );
-    const semicolon: string = extensionProperties.addSemicolonInTheEnd
-      ? ';'
-      : '';
+    const semicolon = ';'
     return `${
-      extensionProperties.logFunction !== 'log'
+      extensionProperties.logFunction !== 'd'
         ? extensionProperties.logFunction
-        : `console.${extensionProperties.logType}`
-    }(${extensionProperties.quote}${extensionProperties.logMessagePrefix}${
-      extensionProperties.logMessagePrefix.length !== 0 &&
-      extensionProperties.logMessagePrefix !==
-        `${extensionProperties.delimiterInsideMessage} `
-        ? ` ${extensionProperties.delimiterInsideMessage} `
-        : ''
-    }${
-      extensionProperties.includeFileNameAndLineNum
-        ? `file: ${fileName}:${
-            lineOfLogMsg +
-            (extensionProperties.insertEmptyLineBeforeLogMessage ? 2 : 1)
-          } ${extensionProperties.delimiterInsideMessage} `
-        : ''
-    }${
-      extensionProperties.insertEnclosingClass
-        ? classThatEncloseTheVar.length > 0
-          ? `${classThatEncloseTheVar} ${extensionProperties.delimiterInsideMessage} `
-          : ``
-        : ''
-    }${
-      extensionProperties.insertEnclosingFunction
-        ? funcThatEncloseTheVar.length > 0
-          ? `${funcThatEncloseTheVar} ${extensionProperties.delimiterInsideMessage} `
-          : ''
-        : ''
-    }${selectedVar}${extensionProperties.logMessageSuffix}${
-      extensionProperties.quote
-    }, ${selectedVar})${semicolon}`;
+        : `${extensionProperties.logType}`
+    }(${selectedVar})${semicolon}`;
   }
 
   private emptyBlockDebuggingMsg(
@@ -258,10 +207,7 @@ export class JSDebugMessage extends DebugMessage {
         : selectedVar,
       lineOfSelectedVar,
       lineOfLogMsg,
-      omit(extensionProperties, [
-        'wrapLogMessage',
-        'insertEmptyLineAfterLogMessage',
-      ]),
+      omit(extensionProperties),
     );
     const debuggingMsg: string = this.constructDebuggingMsg(
       extensionProperties,
@@ -297,7 +243,7 @@ export class JSDebugMessage extends DebugMessage {
         document,
         textEditor,
         tabSize,
-        extensionProperties.addSemicolonInTheEnd,
+        true,
         selectedVarLine,
         debuggingMsgContent,
       );
@@ -308,8 +254,8 @@ export class JSDebugMessage extends DebugMessage {
       textEditor,
       lineOfLogMsg,
       debuggingMsg,
-      extensionProperties.insertEmptyLineBeforeLogMessage,
-      extensionProperties.insertEmptyLineAfterLogMessage,
+      true,
+      true,
     );
   }
   logMessage(
