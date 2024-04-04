@@ -100,11 +100,10 @@ export class JSDebugMessage extends DebugMessage {
     const fileName = document.fileName.includes('/')
       ? document.fileName.split('/')[document.fileName.split('/').length - 1]
       : document.fileName.split('\\')[document.fileName.split('\\').length - 1];
-    const wrappingMsg = `//${'-'.repeat(debuggingMsgContent.length - 50,)} ${
-      extensionProperties.includeFileNameAndLineNum ? `file: ${fileName}:${lineOfLogMsg}` : ''
-    } ${
-      '-'.repeat(debuggingMsgContent.length - 50,)
-    }`;
+    const wrapLength = Math.max(20, debuggingMsgContent.length - 50);
+    const wrappingMsg = `//${'-'.repeat(wrapLength)}${
+      extensionProperties.includeFileNameAndLineNum ? `file: ${fileName}:${lineOfLogMsg} ` : ''
+    }${'-'.repeat(wrapLength)}`;
     const debuggingMsg: string = extensionProperties.wrapLogMessage
       ? `${spacesBeforeMsg}${wrappingMsg}\n${spacesBeforeMsg}${debuggingMsgContent}\n${spacesBeforeMsg}${wrappingMsg}`
       : `${spacesBeforeMsg}${debuggingMsgContent}`;
