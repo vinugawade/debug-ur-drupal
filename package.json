@@ -24,70 +24,11 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "Debug UR Drupal Configuration",
+      "title": "Debug UR Drupal",
       "properties": {
-        "debugUrDrupal.wrapLogMessage": {
-          "type": "boolean",
-          "default": true,
-          "description": "Determine if the log message should be wrapped or not."
-        },
-        "debugUrDrupal.logMessagePrefix": {
-          "type": "string",
-          "default": "🚀",
-          "description": "The prefix of the log message."
-        },
-        "debugUrDrupal.logMessageSuffix": {
-          "type": "string",
-          "default": "//Debug Log.",
-          "description": "The suffix of the log message."
-        },
-        "debugUrDrupal.includeFileNameAndLineNum": {
-          "type": "boolean",
-          "default": false,
-          "description": "Whether to include the file name and the line number of the log message."
-        },
-        "debugUrDrupal.addSemicolonInTheEnd": {
-          "type": "boolean",
-          "default": false,
-          "description": "Whether to add or not a semicolon in the end of the log message."
-        },
-        "debugUrDrupal.insertEnclosingClass": {
-          "type": "boolean",
-          "default": true,
-          "description": "Whether to insert or not the enclosing class of the selected variable in the log message."
-        },
-        "debugUrDrupal.insertEnclosingFunction": {
-          "type": "boolean",
-          "default": true,
-          "description": "Whether to insert or not the enclosing function of the selected variable in the log message."
-        },
-        "debugUrDrupal.insertEmptyLineBeforeLogMessage": {
-          "type": "boolean",
-          "default": false,
-          "description": "Whether to insert an empty line before the log message or not."
-        },
-        "debugUrDrupal.insertEmptyLineAfterLogMessage": {
-          "type": "boolean",
-          "default": false,
-          "description": "Whether to insert an empty line after the log message or not."
-        },
-        "debugUrDrupal.delimiterInsideMessage": {
-          "type": "string",
-          "default": "~",
-          "description": "The delimiter that will separate the different log message elements (file name, line number, class, function and variable)"
-        },
-        "debugUrDrupal.quote": {
-          "type": "string",
-          "enum": [
-            "\"",
-            "'",
-            "`"
-          ],
-          "default": "\"",
-          "description": "Double quotes, single quotes or backtick"
-        },
         "debugUrDrupal.logType": {
           "type": "string",
+          "order": "1",
           "enum": [
             "d",
             "dd",
@@ -96,12 +37,38 @@
             "print_r"
           ],
           "default": "d",
-          "description": "Select the log type"
+          "description": "Select the log type",
+          "enumDescriptions": [
+            "Basic logging function",
+            "Detailed logging function",
+            "Logging function with Kint Simple Messenger (KSM)",
+            "Logging function to output variable contents (var_dump)",
+            "Logging function to output variable contents as human-readable text (print_r)"
+          ]
         },
         "debugUrDrupal.logFunction": {
           "type": "string",
+          "order": "2",
           "default": "d",
           "description": "Specify a log function (when specified logType will be ignored)"
+        },
+        "debugUrDrupal.logMessageSuffix": {
+          "type": "string",
+          "order": "3",
+          "default": "Debug Log",
+          "description": "The suffix of the log message."
+        },
+        "debugUrDrupal.includeFileNameAndLineNum": {
+          "type": "boolean",
+          "order": "4",
+          "default": false,
+          "description": "Whether to include the file name and the line number of the log message."
+        },
+        "debugUrDrupal.wrapLogMessage": {
+          "type": "boolean",
+          "order": "5",
+          "default": false,
+          "description": "Determine if the log message should be wrapped or not."
         }
       }
     },
