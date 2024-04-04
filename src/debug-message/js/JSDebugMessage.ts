@@ -91,11 +91,20 @@ export class JSDebugMessage extends DebugMessage {
     return false;
   }
   private constructDebuggingMsg(
+    document: TextDocument,
+    lineOfLogMsg: number,
     extensionProperties: ExtensionProperties,
     debuggingMsgContent: string,
     spacesBeforeMsg: string,
   ): string {
-    const wrappingMsg = `//${'-'.repeat(debuggingMsgContent.length - 10,)}`;
+    const fileName = document.fileName.includes('/')
+      ? document.fileName.split('/')[document.fileName.split('/').length - 1]
+      : document.fileName.split('\\')[document.fileName.split('\\').length - 1];
+    const wrappingMsg = `//${'-'.repeat(debuggingMsgContent.length - 50,)} ${
+      extensionProperties.includeFileNameAndLineNum ? `file: ${fileName}:${lineOfLogMsg}` : ''
+    } ${
+      '-'.repeat(debuggingMsgContent.length - 50,)
+    }`;
     const debuggingMsg: string = extensionProperties.wrapLogMessage
       ? `${spacesBeforeMsg}${wrappingMsg}\n${spacesBeforeMsg}${debuggingMsgContent}\n${spacesBeforeMsg}${wrappingMsg}`
       : `${spacesBeforeMsg}${debuggingMsgContent}`;
@@ -111,12 +120,17 @@ export class JSDebugMessage extends DebugMessage {
       'wrapLogMessage' | 'insertEmptyLineAfterLogMessage'
     >,
   ): string {
+    const fileName = document.fileName.includes('/')
+      ? document.fileName.split('/')[document.fileName.split('/').length - 1]
+      : document.fileName.split('\\')[document.fileName.split('\\').length - 1];
     const semicolon = ';'
     return `${
       extensionProperties.logFunction !== 'd'
         ? extensionProperties.logFunction
         : `${extensionProperties.logType}`
-    }(${selectedVar})${semicolon} ${extensionProperties.logMessageSuffix}`;
+    }(${selectedVar})${semicolon} ${'//'}${extensionProperties.logMessageSuffix}, ${
+      extensionProperties.includeFileNameAndLineNum ? `file: ${fileName}:${lineOfLogMsg}` : ''
+    }`;
   }
 
   private emptyBlockDebuggingMsg(
@@ -213,6 +227,8 @@ export class JSDebugMessage extends DebugMessage {
       omit(extensionProperties),
     );
     const debuggingMsg: string = this.constructDebuggingMsg(
+      document,
+      lineOfLogMsg,
       extensionProperties,
       debuggingMsgContent,
       spacesBeforeMsg,

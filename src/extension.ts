@@ -32,9 +32,9 @@ function getExtensionProperties(
   workspaceConfig: vscode.WorkspaceConfiguration,
 ) {
   return {
-    wrapLogMessage: workspaceConfig.wrapLogMessage ?? true,
+    wrapLogMessage: workspaceConfig.wrapLogMessage ?? false,
     // logMessagePrefix: workspaceConfig.logMessagePrefix ?? '🚀',
-    logMessageSuffix: workspaceConfig.logMessageSuffix ?? '//Debug Log.',
+    logMessageSuffix: workspaceConfig.logMessageSuffix ?? 'Debug Log',
     // addSemicolonInTheEnd: true,
     // insertEnclosingClass: workspaceConfig.insertEnclosingClass ?? true,
     // insertEnclosingFunction: workspaceConfig.insertEnclosingFunction ?? true,
@@ -44,8 +44,8 @@ function getExtensionProperties(
     //   workspaceConfig.insertEmptyLineAfterLogMessage ?? false,
     // quote: workspaceConfig.quote ?? '"',
     // delimiterInsideMessage: workspaceConfig.delimiterInsideMessage ?? '~',
-    // includeFileNameAndLineNum:
-    //   workspaceConfig.includeFileNameAndLineNum ?? true,
+    includeFileNameAndLineNum:
+      workspaceConfig.includeFileNameAndLineNum ?? false,
     logType: workspaceConfig.logType ?? 'd',
     logFunction: workspaceConfig.logFunction ?? 'd',
   };
