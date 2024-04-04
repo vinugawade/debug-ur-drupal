@@ -32,9 +32,9 @@ function getExtensionProperties(
   workspaceConfig: vscode.WorkspaceConfiguration,
 ) {
   return {
-    // wrapLogMessage: false,
+    wrapLogMessage: workspaceConfig.wrapLogMessage ?? true,
     // logMessagePrefix: workspaceConfig.logMessagePrefix ?? '🚀',
-    // logMessageSuffix: workspaceConfig.logMessageSuffix ?? ':',
+    logMessageSuffix: workspaceConfig.logMessageSuffix ?? '//Debug Log.',
     // addSemicolonInTheEnd: true,
     // insertEnclosingClass: workspaceConfig.insertEnclosingClass ?? true,
     // insertEnclosingFunction: workspaceConfig.insertEnclosingFunction ?? true,

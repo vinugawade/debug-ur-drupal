@@ -95,7 +95,10 @@ export class JSDebugMessage extends DebugMessage {
     debuggingMsgContent: string,
     spacesBeforeMsg: string,
   ): string {
-    const debuggingMsg = `${spacesBeforeMsg}${debuggingMsgContent}`;
+    const wrappingMsg = `//${'-'.repeat(debuggingMsgContent.length - 10,)}`;
+    const debuggingMsg: string = extensionProperties.wrapLogMessage
+      ? `${spacesBeforeMsg}${wrappingMsg}\n${spacesBeforeMsg}${debuggingMsgContent}\n${spacesBeforeMsg}${wrappingMsg}`
+      : `${spacesBeforeMsg}${debuggingMsgContent}`;
     return debuggingMsg;
   }
   private constructDebuggingMsgContent(
@@ -113,7 +116,7 @@ export class JSDebugMessage extends DebugMessage {
       extensionProperties.logFunction !== 'd'
         ? extensionProperties.logFunction
         : `${extensionProperties.logType}`
-    }(${selectedVar})${semicolon}`;
+    }(${selectedVar})${semicolon} ${extensionProperties.logMessageSuffix}`;
   }
 
   private emptyBlockDebuggingMsg(

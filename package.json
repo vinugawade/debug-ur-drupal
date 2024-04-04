@@ -28,7 +28,7 @@
       "properties": {
         "debugUrDrupal.wrapLogMessage": {
           "type": "boolean",
-          "default": false,
+          "default": true,
           "description": "Determine if the log message should be wrapped or not."
         },
         "debugUrDrupal.logMessagePrefix": {
@@ -38,7 +38,7 @@
         },
         "debugUrDrupal.logMessageSuffix": {
           "type": "string",
-          "default": ":",
+          "default": "//Debug Log.",
           "description": "The suffix of the log message."
         },
         "debugUrDrupal.includeFileNameAndLineNum": {
@@ -126,8 +126,8 @@
     "keybindings": [
       {
         "command": "debugUrDrupal.displayLogMessage",
-        "key": "ctrl+alt+l",
-        "mac": "ctrl+alt+l"
+        "key": "ctrl+alt+d",
+        "mac": "ctrl+alt+d"
       },
       {
         "command": "debugUrDrupal.commentAllLogMessages",
