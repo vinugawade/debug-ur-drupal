@@ -9,7 +9,7 @@ import {
   MultilineContextVariable,
 } from '../../entities';
 import { LineCodeProcessing } from '../../line-code-processing';
-import _, { omit } from 'lodash';
+import _ from 'lodash';
 import { DebugMessage } from '../DebugMessage';
 import { DebugMessageLine } from '../DebugMessageLine';
 import {
@@ -115,10 +115,7 @@ export class JSDebugMessage extends DebugMessage {
     selectedVar: string,
     lineOfSelectedVar: number,
     lineOfLogMsg: number,
-    extensionProperties: Omit<
-      ExtensionProperties,
-      'wrapLogMessage' | 'insertEmptyLineAfterLogMessage'
-    >,
+    extensionProperties: Omit<ExtensionProperties, 'wrapLogMessage'>,
   ): string {
     const fileName = document.fileName.includes('/')
       ? document.fileName.split('/')[document.fileName.split('/').length - 1]
@@ -224,7 +221,7 @@ export class JSDebugMessage extends DebugMessage {
         : selectedVar,
       lineOfSelectedVar,
       lineOfLogMsg,
-      omit(extensionProperties),
+      extensionProperties,
     );
     const debuggingMsg: string = this.constructDebuggingMsg(
       document,

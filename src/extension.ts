@@ -54,8 +54,7 @@ function getExtensionProperties(
     //   workspaceConfig.insertEmptyLineAfterLogMessage ?? false,
     // quote: workspaceConfig.quote ?? '"',
     // delimiterInsideMessage: workspaceConfig.delimiterInsideMessage ?? '~',
-    includeFileNameAndLineNum:
-      workspaceConfig.includeFileNameAndLineNum ?? false,
+    includeFileNameAndLineNum: workspaceConfig.includeFileNameAndLineNum ?? false,
     logType: workspaceConfig.logType ?? 'd',
     logFunction: workspaceConfig.logFunction ?? 'd',
   };
