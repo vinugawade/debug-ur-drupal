@@ -23,6 +23,7 @@
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
+      "scope": "window",
       "type": "object",
       "title": "Debug UR Drupal",
       "properties": {

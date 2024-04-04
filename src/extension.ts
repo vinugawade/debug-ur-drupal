@@ -17,9 +17,19 @@ export function activate(): void {
     jsLineCodeProcessing,
     debugMessageLine,
   );
-  const config: vscode.WorkspaceConfiguration =
+
+  // Fetch initial configuration
+  let config: vscode.WorkspaceConfiguration =
     vscode.workspace.getConfiguration('debugUrDrupal');
-  const properties: ExtensionProperties = getExtensionProperties(config);
+  let properties: ExtensionProperties = getExtensionProperties(config);
+
+  // React to changes in configuration
+  vscode.workspace.onDidChangeConfiguration(() => {
+    config = vscode.workspace.getConfiguration('debugUrDrupal');
+    properties = getExtensionProperties(config);
+  });
+
+  // Register commands
   const commands: Array<Command> = getAllCommands();
   for (const { name, handler } of commands) {
     vscode.commands.registerCommand(name, (args: unknown[]) => {
