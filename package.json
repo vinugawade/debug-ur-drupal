@@ -1,7 +1,7 @@
 {
   "name": "debug-ur-drupal",
   "displayName": "Debug UR Drupal",
-  "description": "Quick way to of writing log/debug messages.",
+  "description": "Quick way to writing log/debug messages.",
   "version": "1.0.0",
   "publisher": "UR-Services",
   "author": {
@@ -116,7 +116,7 @@
   },
   "scripts": {
     "vscode:prepublish": "rm -rf out && npm run esbuild-base -- --minify",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify",
     "esbuild": "npm run esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "watch": "npm run esbuild --watch",
