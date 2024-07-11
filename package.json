@@ -94,8 +94,8 @@
     "keybindings": [
       {
         "command": "debugUrDrupal.displayLogMessage",
-        "key": "ctrl+alt+d",
-        "mac": "ctrl+alt+d"
+        "key": "alt+d",
+        "mac": "alt+d"
       },
       {
         "command": "debugUrDrupal.commentAllLogMessages",
