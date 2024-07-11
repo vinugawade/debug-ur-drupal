@@ -5,9 +5,19 @@
       "name": "Extension",
       "type": "extensionHost",
       "request": "launch",
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "${input:folderPath}"
+      ],
       "outFiles": ["${workspaceFolder}/out/**/*.js"],
       "preLaunchTask": "${defaultBuildTask}"
-    },
+    }
+  ],
+  "inputs": [
+    {
+      "id": "folderPath",
+      "type": "promptString",
+      "description": "Enter the path to the folder you want to open"
+    }
   ]
 }
